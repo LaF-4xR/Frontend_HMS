@@ -1,6 +1,6 @@
 package com.example.hms.controller;
 
-import com.example.frontend.service.ProcedureService;
+import com.example.hms.service.ProcedureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
