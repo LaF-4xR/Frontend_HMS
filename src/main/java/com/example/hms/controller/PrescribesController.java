@@ -34,50 +34,62 @@ public class PrescribesController {
     }
 
     @GetMapping("/searchById")
-    public String searchById(@RequestParam int physicianId,
-                             @RequestParam int patientSsn,
-                             @RequestParam int medicationCode,
-                             @RequestParam String date,
+    public String searchById(@RequestParam(required = false) Integer physicianId,
+                             @RequestParam(required = false) Integer patientSsn,
+                             @RequestParam(required = false) Integer medicationCode,
+                             @RequestParam(required = false) String date,
                              Model model) {
-        model.addAttribute("prescribesById", prescribesService.getById(
-                physicianId,
-                patientSsn,
-                medicationCode,
-                normalizeDateTime(date)
-        ));
+        if (physicianId != null && patientSsn != null && medicationCode != null && date != null && !date.trim().isEmpty()) {
+            model.addAttribute("prescribesById", prescribesService.getById(
+                    physicianId,
+                    patientSsn,
+                    medicationCode,
+                    normalizeDateTime(date)
+            ));
+        }
         return "prescribes/prescribes-id";
     }
 
     @GetMapping("/searchByPhysician")
-    public String searchByPhysician(@RequestParam int physicianId, Model model) {
-        model.addAttribute("prescribesByPhysician", prescribesService.getByPhysician(physicianId));
+    public String searchByPhysician(@RequestParam(required = false) Integer physicianId, Model model) {
+        if (physicianId != null) {
+            model.addAttribute("prescribesByPhysician", prescribesService.getByPhysician(physicianId));
+        }
         return "prescribes/prescribes-physician";
     }
 
     @GetMapping("/searchByPatient")
-    public String searchByPatient(@RequestParam int patientSsn, Model model) {
-        model.addAttribute("prescribesByPatient", prescribesService.getByPatient(patientSsn));
+    public String searchByPatient(@RequestParam(required = false) Integer patientSsn, Model model) {
+        if (patientSsn != null) {
+            model.addAttribute("prescribesByPatient", prescribesService.getByPatient(patientSsn));
+        }
         return "prescribes/prescribes-patient";
     }
 
     @GetMapping("/searchByMedication")
-    public String searchByMedication(@RequestParam int medicationCode, Model model) {
-        model.addAttribute("prescribesByMedication", prescribesService.getByMedication(medicationCode));
+    public String searchByMedication(@RequestParam(required = false) Integer medicationCode, Model model) {
+        if (medicationCode != null) {
+            model.addAttribute("prescribesByMedication", prescribesService.getByMedication(medicationCode));
+        }
         return "prescribes/prescribes-medication";
     }
 
     @GetMapping("/searchByAppointment")
-    public String searchByAppointment(@RequestParam int appointmentId, Model model) {
-        model.addAttribute("prescribesByAppointment", prescribesService.getByAppointment(appointmentId));
+    public String searchByAppointment(@RequestParam(required = false) Integer appointmentId, Model model) {
+        if (appointmentId != null) {
+            model.addAttribute("prescribesByAppointment", prescribesService.getByAppointment(appointmentId));
+        }
         return "prescribes/prescribes-appointment";
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam int physicianId,
-                         @RequestParam int patientSsn,
-                         @RequestParam int medicationCode,
+    public String search(@RequestParam(required = false) Integer physicianId,
+                         @RequestParam(required = false) Integer patientSsn,
+                         @RequestParam(required = false) Integer medicationCode,
                          Model model) {
-        model.addAttribute("prescribesBySearch", prescribesService.search(physicianId, patientSsn, medicationCode));
+        if (physicianId != null && patientSsn != null && medicationCode != null) {
+            model.addAttribute("prescribesBySearch", prescribesService.search(physicianId, patientSsn, medicationCode));
+        }
         return "prescribes/prescribes-search";
     }
 
