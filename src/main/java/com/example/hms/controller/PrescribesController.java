@@ -1,6 +1,6 @@
-package com.example.frontend.controller;
+package com.example.hms.controller;
 
-import com.example.frontend.service.PrescribesService;
+import com.example.hms.service.PrescribesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
