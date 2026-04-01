@@ -1,6 +1,6 @@
 package com.example.hms.controller;
 
-import com.example.frontend.service.AppointmentService;
+import com.example.hms.service.AppointmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
